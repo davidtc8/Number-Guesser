@@ -6,8 +6,7 @@ print(art.logo)
 print("Welcome to the Number Guessing Game!")
 print("I'm thinking of a number between 0 and 30...")
 
-decision = input("Choose a difficulty between 'Easy' and 'Hard': ").lower()
-
+decision = input("Choose a difficulty between 'Easy', 'Medium' and 'Hard': ").lower()
 
 def hard():
     """
@@ -17,6 +16,36 @@ def hard():
     lives = 5
     number = random.randint(0, 30)
     print("You have 5 attemps remaining to guess the number")
+    while lives > 0:
+        guess = int(input("Make a guess: "))
+        if guess > number and lives >= 1:
+            print("Too high")
+            lives -= 1
+            print(f"You have {lives} attempts remaining ):")
+            if lives >= 1:
+                print('Guess again')
+            else:
+                print('You loose!')
+        elif guess < number and lives >= 1:
+            print("Too low")
+            lives -= 1
+            print(f"You have {lives} attempts remaining ):")
+            if lives >= 1:
+                print('Guess again')
+            else:
+                print('You loose!')
+        elif guess == number:
+            print('You win!')
+            break
+
+def medium():
+    """
+    This function will run when the user chooses 'medium' in the game!
+    The player will only have 7 lives.
+    """
+    lives = 7
+    number = random.randint(0, 30)
+    print("You have 7 attemps remaining to guess the number")
     while lives > 0:
         guess = int(input("Make a guess: "))
         if guess > number and lives >= 1:
@@ -71,7 +100,9 @@ def easy():
 
 if decision == 'hard':
     hard()
-if decision == 'easy':
+elif decision == 'easy':
     easy()
+elif decision == 'medium':
+    medium()
 else:
     print(f"ayñ, Idk what you meant by {decision}")
